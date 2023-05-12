@@ -45,6 +45,7 @@ enum class ButtonType(val value: Int) {
 @Composable
 fun PayButton(
     onClick: () -> Unit,
+    allowedPaymentMethods: String,
     modifier: Modifier = Modifier,
     theme: ButtonTheme = ButtonTheme.Dark,
     type: ButtonType = ButtonType.Buy,
@@ -58,6 +59,7 @@ fun PayButton(
                     .setButtonTheme(theme.value)
                     .setButtonType(type.value)
                     .setCornerRadius(radius.value.toInt())
+                    .setAllowedPaymentMethods(allowedPaymentMethods)
                     .build())
                 setOnClickListener { onClick() }
             }

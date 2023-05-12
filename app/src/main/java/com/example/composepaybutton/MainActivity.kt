@@ -37,6 +37,19 @@ class MainActivity : ComponentActivity() {
 
         val onClick = { println("Button clicked") }
 
+        // as per https://developers.google.com/pay/api/android/reference/request-objects#PaymentMethod
+        val allowedPaymentMethods = """
+            [
+              {
+                "type": "CARD",
+                "parameters": {
+                  "allowedAuthMethods": ["PAN_ONLY","CRYPTOGRAM_3DS"],
+                  "allowedCardNetworks": ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"]
+                }
+              }
+            ]
+        """.trimIndent()
+
         setContent {
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -47,20 +60,21 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     // Default
-                    PayButton(onClick = onClick)
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods)
 
                     // Customized look
                     PayButton(
                         onClick = onClick,
+                        allowedPaymentMethods = allowedPaymentMethods,
                         radius = 1.dp,
                         modifier = Modifier.width(200.dp),
                         theme = ButtonTheme.Light
                     )
 
                     // Customized labels
-                    PayButton(onClick = onClick, type = ButtonType.Book)
-                    PayButton(onClick = onClick, type = ButtonType.Subscribe)
-                    PayButton(onClick = onClick, type = ButtonType.Donate)
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Book)
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Subscribe)
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Donate)
                 }
             }
         }
