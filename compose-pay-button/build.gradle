@@ -21,7 +21,7 @@ plugins {
 
 ext {
     PUBLISH_GROUP_ID = 'com.google.pay.button'
-    PUBLISH_VERSION = '0.1.0-beta02'
+    PUBLISH_VERSION = '0.1.0-beta03'
     PUBLISH_ARTIFACT_ID = 'compose-pay-button'
 }
 
@@ -63,7 +63,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-wallet:19.2.0-beta01'
+    implementation 'com.google.android.gms:play-services-wallet:19.2.0'
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation 'androidx.compose.material:material:1.2.0'
     implementation 'androidx.core:core-ktx:1.7.0'
