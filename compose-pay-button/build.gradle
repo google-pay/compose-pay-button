@@ -21,7 +21,7 @@ plugins {
 
 ext {
     PUBLISH_GROUP_ID = 'com.google.pay.button'
-    PUBLISH_VERSION = '0.1.0-beta03'
+    PUBLISH_VERSION = '0.1.0'
     PUBLISH_ARTIFACT_ID = 'compose-pay-button'
 }
 
