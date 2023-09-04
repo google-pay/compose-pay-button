@@ -47,8 +47,15 @@ class MainActivity : ComponentActivity() {
               {
                 "type": "CARD",
                 "parameters": {
-                  "allowedAuthMethods": ["PAN_ONLY","CRYPTOGRAM_3DS"],
-                  "allowedCardNetworks": ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"]
+                  "allowedAuthMethods": ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+                  "allowedCardNetworks": ["AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"]
+                },
+                "tokenizationSpecification": {
+                  "type": "PAYMENT_GATEWAY",
+                  "parameters": {
+                    "gateway": "example",
+                    "gatewayMerchantId": "exampleGatewayMerchantId"
+                  }
                 }
               }
             ]
