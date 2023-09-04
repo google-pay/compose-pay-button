@@ -1,4 +1,4 @@
-# compose-pay-button
+# Google Pay button for Jetpack Compose
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.google.pay.button/compose-pay-button)](https://search.maven.org/search?q=g:com.google.pay.button)
 
