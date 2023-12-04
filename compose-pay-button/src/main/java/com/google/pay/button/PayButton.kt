@@ -18,6 +18,7 @@ package com.google.pay.button
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -51,6 +52,9 @@ fun PayButton(
     type: ButtonType = ButtonType.Buy,
     radius: Dp = 100.dp,
 ) {
+
+    val radiusPixelValue = with(LocalDensity.current) { radius.toPx().toInt() }
+
     AndroidView(
         modifier = modifier,
         factory = { context ->
@@ -58,7 +62,7 @@ fun PayButton(
                 this.initialize(ButtonOptions.newBuilder()
                     .setButtonTheme(theme.value)
                     .setButtonType(type.value)
-                    .setCornerRadius(radius.value.toInt())
+                    .setCornerRadius(radiusPixelValue)
                     .setAllowedPaymentMethods(allowedPaymentMethods)
                     .build())
                 setOnClickListener { onClick() }
