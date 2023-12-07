@@ -43,6 +43,9 @@ enum class ButtonType(val value: Int) {
     Subscribe(ButtonConstants.ButtonType.SUBSCRIBE),
 }
 
+private const val FULL_ALPHA = 1f
+private const val HALF_ALPHA = 0.5f
+
 @Composable
 fun PayButton(
     onClick: () -> Unit,
@@ -51,6 +54,7 @@ fun PayButton(
     theme: ButtonTheme = ButtonTheme.Dark,
     type: ButtonType = ButtonType.Buy,
     radius: Dp = 100.dp,
+    enabled: Boolean = true,
 ) {
 
     val radiusPixelValue = with(LocalDensity.current) { radius.toPx().toInt() }
@@ -59,13 +63,26 @@ fun PayButton(
         modifier = modifier,
         factory = { context ->
             GmsPayButton(context).apply {
-                this.initialize(ButtonOptions.newBuilder()
-                    .setButtonTheme(theme.value)
-                    .setButtonType(type.value)
-                    .setCornerRadius(radiusPixelValue)
-                    .setAllowedPaymentMethods(allowedPaymentMethods)
-                    .build())
-                setOnClickListener { onClick() }
+                this.initialize(
+                    ButtonOptions.newBuilder()
+                        .setButtonTheme(theme.value)
+                        .setButtonType(type.value)
+                        .setCornerRadius(radiusPixelValue)
+                        .setAllowedPaymentMethods(allowedPaymentMethods)
+                        .build()
+                )
+            }
+        },
+        update = { button ->
+            button.apply {
+                alpha = if (enabled) FULL_ALPHA else HALF_ALPHA
+                isEnabled = enabled
+
+                if (enabled) {
+                    setOnClickListener { onClick() }
+                } else {
+                    setOnClickListener(null)
+                }
             }
         }
     )
