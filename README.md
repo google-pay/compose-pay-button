@@ -5,6 +5,8 @@
 An Android library that provides a [Jetpack Compose](https://developer.android.com/jetpack/compose) wrapper on top of the
 [Google Pay Button API](https://developers.google.com/pay/api/android/guides/tutorial).
 
+![Pay Button variations](pay-buttons.png)
+
 ## Installation
 
 The library is hosted on Maven central and can be used by ensuring the following lines exist in each gradle file:

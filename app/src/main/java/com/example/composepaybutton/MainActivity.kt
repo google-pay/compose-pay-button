@@ -23,9 +23,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.Divider
+import androidx.compose.material.LocalTextStyle
+import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 
 import com.google.pay.button.ButtonTheme
@@ -67,24 +74,35 @@ class MainActivity : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
+                    Divider(thickness = 1.dp, color = Color.LightGray)
+                    Text("default")
 
                     // Default
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods)
+
+                    Divider(thickness = 1.dp, color = Color.LightGray)
+                    Text("customized look")
 
                     // Customized look
                     PayButton(
                         onClick = onClick,
                         allowedPaymentMethods = allowedPaymentMethods,
                         radius = 1.dp,
-                        modifier = Modifier.width(200.dp),
+                        modifier = Modifier.width(250.dp),
                         theme = ButtonTheme.Light
                     )
+
+                    Divider(thickness = 1.dp, color = Color.LightGray)
+                    Text("various button types")
 
                     // Customized labels
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Pay)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Book)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Subscribe)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Donate)
+
+                    Divider(thickness = 1.dp, color = Color.LightGray)
+                    Text("disabled state")
 
                     // Disabled buttons
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Checkout, enabled = false)
