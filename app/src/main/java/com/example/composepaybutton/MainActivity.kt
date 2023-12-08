@@ -81,9 +81,14 @@ class MainActivity : ComponentActivity() {
                     )
 
                     // Customized labels
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Pay)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Book)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Subscribe)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Donate)
+
+                    // Disabled buttons
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Checkout, enabled = false)
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Checkout, theme = ButtonTheme.Light, enabled = false)
                 }
             }
         }
