@@ -1,23 +1,6 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-task androidSourcesJar(type: Jar) {
-    archiveClassifier.set('sources')
-    if (project.plugins.findPlugin("com.android.library")) {
-        // For Android libraries
-        from android.sourceSets.main.java.srcDirs
-        from android.sourceSets.main.kotlin.srcDirs
-    } else {
-        // For pure Kotlin libraries, in case you have them
-        from sourceSets.main.java.srcDirs
-        from sourceSets.main.kotlin.srcDirs
-    }
-}
-
-artifacts {
-    archives androidSourcesJar
-}
-
 group = PUBLISH_GROUP_ID
 version = PUBLISH_VERSION
 
@@ -35,12 +18,9 @@ afterEvaluate {
                     from components.java
                 }
 
-                artifact androidSourcesJar
-                //artifact javadocJar
-
                 pom {
                     name = PUBLISH_ARTIFACT_ID
-                    description = 'Google Pay Button for JetPack Compose'
+                    description = 'Google Pay Button for Jetpack Compose'
                     url = 'https://github.com/google-pay/compose-pay-button'
                     licenses {
                         license {
