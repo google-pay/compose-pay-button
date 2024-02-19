@@ -78,7 +78,7 @@ class MainActivity : ComponentActivity() {
                     Text("default")
 
                     // Default
-                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods)
+                    PayButton(onClick = onClick, allowedPaymentMethods = "")
 
                     Divider(thickness = 1.dp, color = Color.LightGray)
                     Text("customized look")
