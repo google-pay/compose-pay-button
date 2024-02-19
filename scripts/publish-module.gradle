@@ -24,8 +24,8 @@ afterEvaluate {
                     url = 'https://github.com/google-pay/compose-pay-button'
                     licenses {
                         license {
-                            name = 'The Apache Software License, Version 2.0'
-                            url = 'https://github.com/google-pay/compose-pay-button/blob/main/LICENSE'
+                            name = 'Apache-2.0'
+                            url = 'https://opensource.org/license/apache-2-0'
                         }
                     }
                     developers {
