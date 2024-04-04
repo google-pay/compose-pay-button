@@ -1,0 +1,16 @@
+[libraries]
+# Library
+compose-ui = "androidx.compose.ui:ui:1.5.3"
+compose-material = "androidx.compose.material:material:1.6.2"
+androidx-core = "androidx.core:core-ktx:1.12.0"
+playServices-wallet = "com.google.android.gms:play-services-wallet:19.3.0"
+
+# Sample/App
+sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.5.3"
+sample-compose-activity = "androidx.activity:activity-compose:1.8.1"
+
+[plugins]
+nexusPublishingPlugin = "io.github.gradle-nexus.publish-plugin:1.3.0"
+androidApplication = "com.android.application:8.2.2"
+androidLibrary = "com.android.library:8.2.2"
+kotlinAndroid = "org.jetbrains.kotlin.android:1.8.20"
