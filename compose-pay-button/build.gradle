@@ -15,8 +15,8 @@
  */
 
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
 }
 
 ext {
@@ -69,8 +69,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-wallet:19.3.0'
-    implementation "androidx.compose.ui:ui:$compose_ui_version"
-    implementation 'androidx.compose.material:material:1.6.2'
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation libs.playServices.wallet
+    implementation libs.compose.ui
+    implementation libs.compose.material
+    implementation libs.androidx.core
 }
