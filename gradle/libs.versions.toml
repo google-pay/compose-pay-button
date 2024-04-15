@@ -11,6 +11,6 @@ sample-compose-activity = "androidx.activity:activity-compose:1.8.1"
 
 [plugins]
 nexusPublishingPlugin = "io.github.gradle-nexus.publish-plugin:1.3.0"
-androidApplication = "com.android.application:8.2.2"
+androidApplication = "com.android.application:8.3.2"
 androidLibrary = "com.android.library:8.2.2"
 kotlinAndroid = "org.jetbrains.kotlin.android:1.8.20"
