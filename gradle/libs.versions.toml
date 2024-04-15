@@ -10,7 +10,7 @@ sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.5.3"
 sample-compose-activity = "androidx.activity:activity-compose:1.8.2"
 
 [plugins]
-nexusPublishingPlugin = "io.github.gradle-nexus.publish-plugin:1.3.0"
+nexusPublishingPlugin = "io.github.gradle-nexus.publish-plugin:2.0.0"
 androidApplication = "com.android.application:8.2.2"
 androidLibrary = "com.android.library:8.3.2"
 kotlinAndroid = "org.jetbrains.kotlin.android:1.8.20"
