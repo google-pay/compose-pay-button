@@ -1,7 +1,7 @@
 [libraries]
 # Library
 compose-ui = "androidx.compose.ui:ui:1.6.6"
-compose-material = "androidx.compose.material:material:1.6.6"
+compose-material = "androidx.compose.material:material:1.6.7"
 androidx-core = "androidx.core:core-ktx:1.13.0"
 playServices-wallet = "com.google.android.gms:play-services-wallet:19.3.0"
 
