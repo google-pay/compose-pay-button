@@ -1,12 +1,12 @@
 [libraries]
 # Library
-compose-ui = "androidx.compose.ui:ui:1.6.6"
+compose-ui = "androidx.compose.ui:ui:1.6.7"
 compose-material = "androidx.compose.material:material:1.6.6"
 androidx-core = "androidx.core:core-ktx:1.13.0"
 playServices-wallet = "com.google.android.gms:play-services-wallet:19.3.0"
 
 # Sample/App
-sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.6.6"
+sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.6.7"
 sample-compose-activity = "androidx.activity:activity-compose:1.9.0"
 
 [plugins]
