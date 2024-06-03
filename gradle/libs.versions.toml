@@ -3,7 +3,7 @@
 compose-ui = "androidx.compose.ui:ui:1.6.7"
 compose-material = "androidx.compose.material:material:1.6.7"
 androidx-core = "androidx.core:core-ktx:1.13.1"
-playServices-wallet = "com.google.android.gms:play-services-wallet:19.3.0"
+playServices-wallet = "com.google.android.gms:play-services-wallet:19.4.0"
 
 # Sample/App
 sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.6.7"
