@@ -1,9 +1,12 @@
+[versions]
+kotlin = "2.0.0"
+
 [libraries]
 # Library
 compose-ui = "androidx.compose.ui:ui:1.6.7"
 compose-material = "androidx.compose.material:material:1.6.7"
 androidx-core = "androidx.core:core-ktx:1.13.1"
-playServices-wallet = "com.google.android.gms:play-services-wallet:19.3.0"
+playServices-wallet = "com.google.android.gms:play-services-wallet:19.4.0"
 
 # Sample/App
 sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.6.7"
@@ -11,6 +14,7 @@ sample-compose-activity = "androidx.activity:activity-compose:1.9.0"
 
 [plugins]
 nexusPublishingPlugin = "io.github.gradle-nexus.publish-plugin:2.0.0"
-androidApplication = "com.android.application:8.4.0"
-androidLibrary = "com.android.library:8.4.0"
-kotlinAndroid = "org.jetbrains.kotlin.android:1.9.23"
+androidApplication = "com.android.application:8.4.1"
+androidLibrary = "com.android.library:8.4.1"
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
