@@ -10,7 +10,7 @@ playServices-wallet = "com.google.android.gms:play-services-wallet:19.4.0"
 
 # Sample/App
 sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.6.8"
-sample-compose-activity = "androidx.activity:activity-compose:1.9.1"
+sample-compose-activity = "androidx.activity:activity-compose:1.9.2"
 
 [plugins]
 nexusPublishingPlugin = "io.github.gradle-nexus.publish-plugin:2.0.0"
