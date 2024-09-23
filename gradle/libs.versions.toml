@@ -3,13 +3,13 @@ kotlin = "2.0.20"
 
 [libraries]
 # Library
-compose-ui = "androidx.compose.ui:ui:1.7.1"
+compose-ui = "androidx.compose.ui:ui:1.7.2"
 compose-material = "androidx.compose.material:material:1.7.1"
 androidx-core = "androidx.core:core-ktx:1.13.1"
 playServices-wallet = "com.google.android.gms:play-services-wallet:19.4.0"
 
 # Sample/App
-sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.7.1"
+sample-compose-ui-tooling = "androidx.compose.ui:ui-tooling-preview:1.7.2"
 sample-compose-activity = "androidx.activity:activity-compose:1.9.2"
 
 [plugins]
