@@ -86,3 +86,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 ```
+
+## Error handling and Fallback UI
+
+The `PayButton` composable wraps the underlying `PayButton` Android View, which may encounter errors during initialization. To handle these situations, the `PayButton` composable provides:
+
+*   **`onError` Callback:** Invoked when an error occurs during the button's initialization. This callback receives the `Throwable` that caused the error, allowing you to log it or take other actions.
+*   **`fallbackUi` Composable:** An optional composable function that is displayed in place of the button if an error occurs. If not provided, nothing will be displayed in case of error.
+
+This mechanism ensures that your app can gracefully handle potential issues with the `PayButton` and provide a fallback experience to the user.

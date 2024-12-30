@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
@@ -103,6 +104,12 @@ class MainActivity : ComponentActivity() {
                     // Disabled buttons
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Checkout, enabled = false)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Checkout, theme = ButtonTheme.Light, enabled = false)
+
+                    Divider(thickness = 1.dp, color = Color.LightGray)
+                    Text("Fallback UI")
+
+                    // Fallback UI in case of init failure
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, onError = { println("Error: $it") }) { Button(onClick = onClick) { Text("Fallback UI") }}
                 }
             }
         }
