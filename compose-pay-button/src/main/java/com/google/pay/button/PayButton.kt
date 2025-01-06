@@ -17,15 +17,18 @@
 package com.google.pay.button
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-
+import com.google.android.gms.wallet.button.ButtonConstants
 import com.google.android.gms.wallet.button.ButtonOptions
 import com.google.android.gms.wallet.button.PayButton as GmsPayButton
-import com.google.android.gms.wallet.button.ButtonConstants
 
 enum class ButtonTheme(val value: Int) {
     Dark(ButtonConstants.ButtonTheme.DARK),
@@ -55,35 +58,50 @@ fun PayButton(
     type: ButtonType = ButtonType.Buy,
     radius: Dp = 100.dp,
     enabled: Boolean = true,
+    onError: (Throwable) -> Unit = {},
+    fallbackUi: @Composable (() -> Unit)? = null,
 ) {
+
+    var showFallback by remember { mutableStateOf(false) }
 
     val radiusPixelValue = with(LocalDensity.current) { radius.toPx().toInt() }
 
-    AndroidView(
-        modifier = modifier,
-        factory = { context ->
-            GmsPayButton(context).apply {
-                this.initialize(
-                    ButtonOptions.newBuilder()
-                        .setButtonTheme(theme.value)
-                        .setButtonType(type.value)
-                        .setCornerRadius(radiusPixelValue)
-                        .setAllowedPaymentMethods(allowedPaymentMethods)
-                        .build()
-                )
-            }
-        },
-        update = { button ->
-            button.apply {
-                alpha = if (enabled) FULL_ALPHA else HALF_ALPHA
-                isEnabled = enabled
+    if (!showFallback) {
+        AndroidView(
+            modifier = modifier,
+            factory = { context ->
+                GmsPayButton(context).apply {
+                    kotlin.runCatching {
+                        this.initialize(
+                            ButtonOptions.newBuilder()
+                                .setButtonTheme(theme.value)
+                                .setButtonType(type.value)
+                                .setCornerRadius(radiusPixelValue)
+                                .setAllowedPaymentMethods(allowedPaymentMethods)
+                                .build()
+                        )
+                    }.onFailure {
+                        onError(it)
+                        showFallback = true
+                    }
+                }
+            },
+            update = { button ->
+                if (!showFallback) {
+                    button.apply {
+                        alpha = if (enabled) FULL_ALPHA else HALF_ALPHA
+                        isEnabled = enabled
 
-                if (enabled) {
-                    setOnClickListener { onClick() }
-                } else {
-                    setOnClickListener(null)
+                        if (enabled) {
+                            setOnClickListener { onClick() }
+                        } else {
+                            setOnClickListener(null)
+                        }
+                    }
                 }
             }
-        }
-    )
+        )
+    } else {
+        fallbackUi?.invoke()
+    }
 }
