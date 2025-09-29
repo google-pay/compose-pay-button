@@ -4,7 +4,7 @@ kotlin = "2.2.10"
 [libraries]
 # Library
 compose-ui = "androidx.compose.ui:ui:1.9.0"
-compose-material = "androidx.compose.material:material:1.9.0"
+compose-material = "androidx.compose.material:material:1.9.2"
 androidx-core = "androidx.core:core-ktx:1.17.0"
 playServices-wallet = "com.google.android.gms:play-services-wallet:19.4.0"
 
