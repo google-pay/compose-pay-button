@@ -93,10 +93,10 @@ class MainActivity : ComponentActivity() {
                     Text("various button types")
 
                     // Customized labels
-                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Pay)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Book)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Subscribe)
                     PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.Donate)
+                    PayButton(onClick = onClick, allowedPaymentMethods = allowedPaymentMethods, type = ButtonType.PIX)
 
                     Divider(thickness = 1.dp, color = Color.LightGray)
                     Text("disabled state")
