@@ -44,6 +44,8 @@ enum class ButtonType(val value: Int) {
     Pay(ButtonConstants.ButtonType.PAY),
     Plain(ButtonConstants.ButtonType.PLAIN),
     Subscribe(ButtonConstants.ButtonType.SUBSCRIBE),
+    PIX(ButtonConstants.ButtonType.PIX),
+    EWALLET(ButtonConstants.ButtonType.EWALLET)
 }
 
 private const val FULL_ALPHA = 1f
