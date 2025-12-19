@@ -30,6 +30,7 @@ apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
 
 android {
     namespace 'com.google.pay.button'
+    description 'Google Pay Button for Jetpack Compose'
     compileSdkVersion 36
 
     defaultConfig {
