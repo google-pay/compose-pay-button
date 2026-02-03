@@ -35,7 +35,6 @@ android {
 
     defaultConfig {
         minSdk 21
-        targetSdkVersion 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -64,6 +63,12 @@ android {
             withSourcesJar()
             //withJavadocJar()
         }
+    }
+    lint {
+        targetSdk 36
+    }
+    testOptions {
+        targetSdk 36
     }
 }
 
