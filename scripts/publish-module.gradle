@@ -7,37 +7,69 @@ version = PUBLISH_VERSION
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
-                groupId PUBLISH_GROUP_ID
-                artifactId PUBLISH_ARTIFACT_ID
-                version PUBLISH_VERSION
-
-                if (project.plugins.findPlugin("com.android.library")) {
-                    from components.release
-                } else {
-                    from components.java
+            if (project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+                configureEach { publication ->
+                    if (publication instanceof MavenPublication) {
+                        publication.groupId = PUBLISH_GROUP_ID
+                        publication.version = PUBLISH_VERSION
+                        // artifactId is automatically set by KMP for target modules
+                        publication.pom {
+                            name = publication.name
+                            description = 'Google Pay Button for Jetpack Compose'
+                            url = 'https://github.com/google-pay/compose-pay-button'
+                            licenses {
+                                license {
+                                    name = 'Apache-2.0'
+                                    url = 'https://opensource.org/license/apache-2-0'
+                                }
+                            }
+                            developers {
+                                developer {
+                                    id = 'google'
+                                    name = 'Google'
+                                }
+                            }
+                            scm {
+                                connection = 'scm:git:github.com/google-pay/compose-pay-button.git'
+                                developerConnection = 'scm:git:ssh://github.com/google-pay/compose-pay-button.git'
+                                url = 'https://github.com/google-pay/compose-pay-button/tree/main'
+                            }
+                        }
+                    }
                 }
+            } else {
+                release(MavenPublication) {
+                    groupId PUBLISH_GROUP_ID
+                    artifactId PUBLISH_ARTIFACT_ID
+                    version PUBLISH_VERSION
 
-                pom {
-                    name = PUBLISH_ARTIFACT_ID
-                    description = 'Google Pay Button for Jetpack Compose'
-                    url = 'https://github.com/google-pay/compose-pay-button'
-                    licenses {
-                        license {
-                            name = 'Apache-2.0'
-                            url = 'https://opensource.org/license/apache-2-0'
-                        }
+                    if (project.plugins.findPlugin("com.android.library")) {
+                        from components.release
+                    } else {
+                        from components.java
                     }
-                    developers {
-                        developer {
-                          id = 'google'
-                          name = 'Google'
+
+                    pom {
+                        name = PUBLISH_ARTIFACT_ID
+                        description = 'Google Pay Button for Jetpack Compose'
+                        url = 'https://github.com/google-pay/compose-pay-button'
+                        licenses {
+                            license {
+                                name = 'Apache-2.0'
+                                url = 'https://opensource.org/license/apache-2-0'
+                            }
                         }
-                    }
-                    scm {
-                        connection = 'scm:git:github.com/google-pay/compose-pay-button.git'
-                        developerConnection = 'scm:git:ssh://github.com/google-pay/compose-pay-button.git'
-                        url = 'https://github.com/google-pay/compose-pay-button/tree/main'
+                        developers {
+                            developer {
+                                id = 'google'
+                                name = 'Google'
+                            }
+                        }
+                        scm {
+                            connection = 'scm:git:github.com/google-pay/compose-pay-button.git'
+                            developerConnection = 'scm:git:ssh://github.com/google-pay/compose-pay-button.git'
+                            url = 'https://github.com/google-pay/compose-pay-button/tree/main'
+                        }
                     }
                 }
             }

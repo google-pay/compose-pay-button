@@ -24,46 +24,44 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.gms.wallet.button.ButtonConstants
 import com.google.android.gms.wallet.button.ButtonOptions
 import com.google.android.gms.wallet.button.PayButton as GmsPayButton
 
-enum class ButtonTheme(val value: Int) {
-    Dark(ButtonConstants.ButtonTheme.DARK),
-    Light(ButtonConstants.ButtonTheme.LIGHT),
-}
-
-enum class ButtonType(val value: Int) {
-    Book(ButtonConstants.ButtonType.BOOK),
-    Buy(ButtonConstants.ButtonType.BUY),
-    Checkout(ButtonConstants.ButtonType.CHECKOUT),
-    Donate(ButtonConstants.ButtonType.DONATE),
-    Order(ButtonConstants.ButtonType.ORDER),
-    Pay(ButtonConstants.ButtonType.PAY),
-    Plain(ButtonConstants.ButtonType.PLAIN),
-    Subscribe(ButtonConstants.ButtonType.SUBSCRIBE),
-    PIX(ButtonConstants.ButtonType.PIX),
-    EWALLET(ButtonConstants.ButtonType.EWALLET)
-}
-
 private const val FULL_ALPHA = 1f
 private const val HALF_ALPHA = 0.5f
 
+private fun ButtonTheme.toAndroidValue(): Int = when (this) {
+    ButtonTheme.Dark -> ButtonConstants.ButtonTheme.DARK
+    ButtonTheme.Light -> ButtonConstants.ButtonTheme.LIGHT
+}
+
+private fun ButtonType.toAndroidValue(): Int = when (this) {
+    ButtonType.Book -> ButtonConstants.ButtonType.BOOK
+    ButtonType.Buy -> ButtonConstants.ButtonType.BUY
+    ButtonType.Checkout -> ButtonConstants.ButtonType.CHECKOUT
+    ButtonType.Donate -> ButtonConstants.ButtonType.DONATE
+    ButtonType.Order -> ButtonConstants.ButtonType.ORDER
+    ButtonType.Pay -> ButtonConstants.ButtonType.PAY
+    ButtonType.Plain -> ButtonConstants.ButtonType.PLAIN
+    ButtonType.Subscribe -> ButtonConstants.ButtonType.SUBSCRIBE
+    ButtonType.PIX -> ButtonConstants.ButtonType.PIX
+    ButtonType.EWALLET -> ButtonConstants.ButtonType.EWALLET
+}
+
 @Composable
-fun PayButton(
+actual fun PayButton(
     onClick: () -> Unit,
     allowedPaymentMethods: String,
-    modifier: Modifier = Modifier,
-    theme: ButtonTheme = ButtonTheme.Dark,
-    type: ButtonType = ButtonType.Buy,
-    radius: Dp = 100.dp,
-    enabled: Boolean = true,
-    onError: (Throwable) -> Unit = {},
-    fallbackUi: @Composable (() -> Unit)? = null,
+    modifier: Modifier,
+    theme: ButtonTheme,
+    type: ButtonType,
+    radius: Dp,
+    enabled: Boolean,
+    onError: (Throwable) -> Unit,
+    fallbackUi: @Composable (() -> Unit)?,
 ) {
-
     var showFallback by remember { mutableStateOf(false) }
 
     val radiusPixelValue = with(LocalDensity.current) { radius.toPx().toInt() }
@@ -76,8 +74,8 @@ fun PayButton(
                     kotlin.runCatching {
                         this.initialize(
                             ButtonOptions.newBuilder()
-                                .setButtonTheme(theme.value)
-                                .setButtonType(type.value)
+                                .setButtonTheme(theme.toAndroidValue())
+                                .setButtonType(type.toAndroidValue())
                                 .setCornerRadius(radiusPixelValue)
                                 .setAllowedPaymentMethods(allowedPaymentMethods)
                                 .build()
