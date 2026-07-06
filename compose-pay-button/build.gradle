@@ -15,9 +15,10 @@
  */
 
 plugins {
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose.multiplatform)
 }
 
 ext {
@@ -50,9 +51,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 
     buildFeatures {
         compose true
@@ -71,10 +69,50 @@ android {
         targetSdk 37
     }
 }
+kotlin {
+    androidTarget {
+        publishLibraryVariants("release")
+    }
+    js(IR) {
+        browser()
+    }
+    wasmJs {
+        browser()
+    }
 
-dependencies {
-    implementation libs.playServices.wallet
-    implementation libs.compose.ui
-    implementation libs.compose.material
-    implementation libs.androidx.core
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation compose.runtime
+                implementation compose.ui
+                implementation compose.foundation
+                implementation compose.material
+                implementation compose.components.resources
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation libs.playServices.wallet
+                implementation libs.androidx.core
+            }
+        }
+        jsMain {
+            dependencies {
+                implementation compose.ui
+            }
+        }
+        wasmJsMain {
+            dependencies {
+                implementation compose.ui
+            }
+        }
+    }
+}
+
+tasks.register("printWasmJsClasspath") {
+    doLast {
+        configurations.getByName("wasmJsCompileClasspath").files.forEach {
+            println(it.absolutePath)
+        }
+    }
 }

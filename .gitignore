@@ -10,3 +10,4 @@ build/
 
 *.pem
 .kotlin
+kotlin-js-store/
