@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.3.10"
+kotlin = "2.4.0"
 
 [libraries]
 # Library
@@ -19,4 +19,4 @@ androidLibrary = "com.android.library:9.2.1"
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-compose-multiplatform = { id = "org.jetbrains.compose", version = "1.7.3" }
+compose-multiplatform = { id = "org.jetbrains.compose", version = "1.11.1" }
