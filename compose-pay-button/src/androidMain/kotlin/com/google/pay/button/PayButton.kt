@@ -16,6 +16,8 @@
 
 package com.google.pay.button
 
+import android.view.ViewGroup
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.gms.wallet.button.ButtonConstants
 import com.google.android.gms.wallet.button.ButtonOptions
@@ -68,9 +71,13 @@ actual fun PayButton(
 
     if (!showFallback) {
         AndroidView(
-            modifier = modifier,
+            modifier = modifier.defaultMinSize(minHeight = 48.dp),
             factory = { context ->
                 GmsPayButton(context).apply {
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                    )
                     kotlin.runCatching {
                         this.initialize(
                             ButtonOptions.newBuilder()
